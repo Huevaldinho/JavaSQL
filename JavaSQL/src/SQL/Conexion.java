@@ -14,10 +14,10 @@ public class Conexion {
         String passwordCompleta="password="+password+";";
         String conexionURL = "jdbc:sqlserver://localhost:1433;"//donde esta corriendo la base de datos
                 + "database=master;"//base de datos a la que me quiero conectar
-                +"encrypt=false;"
-                + usuarioCompleto//login + "user=sa;"//login
-                + passwordCompleta//login
-                + "loginTimeOut=60;";//cuanto tiempo para poderse conectar
+                +"encrypt=false;"//sin esta jugada tira error de SSL
+                + usuarioCompleto//user para login al server
+                + passwordCompleta//contra para login al server
+                + "loginTimeOut=30;";//cuanto tiempo para poderse conectar
         try {
             Connection con = DriverManager.getConnection(conexionURL);
             return con;
