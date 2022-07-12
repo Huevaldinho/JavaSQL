@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -100,18 +101,23 @@ public class InsertarDatosTablaPersonaJava extends javax.swing.JFrame {
         // TODO add your handling code here:
         //BOTON INSERTAR EN TABLA PersonaJava
         
-        //ERROR por tipo de dato de string, o por el statement.
         
-        String consulta = "INSERT into PersonaJava(id,nombre,apellido) values(";
-            consulta+=Integer.parseInt (txtCedula.getText())+','+txtNombre.getText()+','+txtApellido.getText()+')';
-                
+        PreparedStatement ps;
+        
+        String consulta = "INSERT into PersonaJava(id,nombre,apellido) values(?,?,?)";
         ResultSet resultado;
         String texto="";
+        String cedula=txtCedula.getText();
         try {
-            resultado = sql.executeQuery(consulta);
-            while(resultado.next())
-                texto+=resultado.getString(1)+'\n';  
-            JOptionPane.showMessageDialog(null,texto);
+            ps = con.prepareStatement(consulta);
+            ps.setInt(1,Integer.parseInt (cedula));
+            ps.setString(2, txtNombre.getText());
+            ps.setString(3, txtApellido.getText());
+            ps.executeUpdate();
+            //resultado = sql.executeQuery(consulta);
+            //while(resultado.next())
+                //texto+=resultado.getString(1)+'\n';  
+            //JOptionPane.showMessageDialog(null,texto);
         } catch (SQLException ex) {
             Logger.getLogger(InsertarDatosTablaPersonaJava.class.getName()).log(Level.SEVERE, null, ex);
         }
