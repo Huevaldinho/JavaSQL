@@ -13,7 +13,7 @@ public class Conexion {
         String usuarioCompleto="user="+user+";";
         String passwordCompleta="password="+password+";";
         String conexionURL = "jdbc:sqlserver://localhost:1433;"//donde esta corriendo la base de datos
-                + "database=master;"//base de datos a la que me quiero conectar
+                + "database=Pruebas;"//base de datos a la que me quiero conectar
                 +"encrypt=false;"//sin esta jugada tira error de SSL
                 + usuarioCompleto//user para login al server
                 + passwordCompleta//contra para login al server

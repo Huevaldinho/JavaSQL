@@ -99,7 +99,12 @@ public class ConexionSQL extends javax.swing.JFrame {
                 ResultSet resultado = sql.executeQuery(consulta);
                 while(resultado.next())
                     basesNombres+=resultado.getString(1)+'\n';    
-                JOptionPane.showMessageDialog(null,basesNombres);
+                //JOptionPane.showMessageDialog(null,basesNombres);
+                
+                InsertarDatosTablaPersonaJava ventanaInsertar = new InsertarDatosTablaPersonaJava();
+                this.setVisible(false);
+                ventanaInsertar.getConexionABase(con,sql);
+                ventanaInsertar.setVisible(true);
                 
             }else{
                 JOptionPane.showMessageDialog(null, "El usuario o contraseña son incorrectas, intente de nuevo.",
